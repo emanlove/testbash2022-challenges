@@ -1,0 +1,10 @@
+# Robot Framework execution artifacts
+output*.xml
+log*.html
+report*.html
+
+# Test.Bash(); 2022
+outputs/
+
+# Applitools EyesLibrary configuration file
+applitools.yaml
