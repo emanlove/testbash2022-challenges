@@ -19,6 +19,15 @@ what each challenge is and then click through to my solution for each.
 
 ### UI Challenge - Can we check that a message has been created?
 
+[The UI Challenge](https://www.ministryoftesting.com/challenges/16) asks of us ...
+
+>how you would mitigate the following risk:
+>
+>An admin user is unable to see and read the message in the admin portal
+>
+>If you had to build UI automation to check that messages can be seen and
+>read, how would you do it?
+
 [See our solution for the UI Challenge](ui-challenge/README.rst)
 
 ### Visual Automation Challenge - Can we check that the correct images are displayed on the home page?

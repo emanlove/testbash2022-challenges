@@ -1,54 +1,74 @@
 *** Settings ***
 Library  SeleniumLibrary  plugins=SeleniumTestability;True;30 Seconds;True
-Library  ReactLibrary
 Library  FakerLibrary
+
+Test Setup     Navigate To Automation In Testing Website And Hack It
+Test Teardown  Close All Browsers
 
 *** Variables ***
 ${message}  Well, the Meadows really wasn't that shady.
+
 *** Test Cases ***
 Verify Contact Form Message
+
+   ${Goldilocks}=  Create Random Name
+   Fill Out Contact Us Form And Submit  ${Goldilocks}  locks@gold-i-mail.com  111-111-1837
+   ...  This bed was too soft!  ${message}
+
+   Login To Admin Portal
+   Navigate To Messages With Admin Portal
+   ${name_el}=  Search For Message Based Upon Name  ${Goldilocks}
+   Click Element  ${name_el}
+
+   ${msg_from}  ${msg_email}  ${msg_subject}  ${msg_message}=  Extract Message Information From Message Overlay
+   Should Be Equal  ${message}  ${msg_message}  Message in system doesn't not match message submitted!
+
+
+*** Keywords ***
+Navigate To Automation In Testing Website And Hack It
    Open Browser  https://automationintesting.online/  Chrome
    Click Button  Let me hack!
-   #Wait for react
-   #Sleep  2secs
+
+Create Random Name
    ${random_city}=  City
-   ${Goldilocks}=  Set Variable  Goldilocks of the ${random_city}
-   Input Text  id:name  ${Goldilocks}
-   Input Text  id:email  locks@gold-i-mail.com
-   Input Text  id:phone  111-111-1837
-   Input Text  id:subject  This bed was too soft!
-   Input Text  id:description  ${message}
+   ${random_name}=  Set Variable  Goldilocks of the ${random_city}
+   RETURN  ${random_name}
+
+Fill Out Contact Us Form And Submit
+   [Arguments]  ${name}  ${email}  ${phone}  ${subject}  ${description}
+   Input Text  id:name   ${name}
+   Input Text  id:email  ${email}
+   Input Text  id:phone  ${phone}
+   Input Text  id:subject  ${subject}
+   Input Text  id:description  ${description}
    Click Element  id:submitContact
+
+Login To Admin Portal
    Go To  https://automationintesting.online/#/admin
    Input Text  id:username  admin
    Input Password  id:password   password
    Click Element  id:doLogin
-   #Wait for react
-   #Sleep  2secs
+
+Navigate To Messages With Admin Portal
    Click Link  \#/admin/messages
-   #Wait for react
-   #Sleep  1secs
+
+Search For Message Based Upon Name
+   [Arguments]  ${search_name}
    ${count}=  Get Element Count  css:div[data-testid]:first-of-type
    FOR  ${index}  IN RANGE  ${count}
       ${name_el}=  Get WebElement    xpath://*[@data-testid="message${index}"]
       ${name}=  Get Text  ${name_el}
-      #${name}=  Get Text  xpath://*[@data-testid="message${index}"]
-      IF  $name != $Goldilocks  CONTINUE
+      IF  $name != $search_name  CONTINUE
       ${subject}=   Get Text  xpath://*[@data-testid="messageDescription${index}"]
    END
    ${foundName}=  Run Keyword And Return Status   Variable Should Exist  ${subject}
    IF  not $foundName  Fail  Did not find matching name in messages
-   Click Element  ${name_el}
-   #Wait for react
-   #Sleep  1sec
-   ${msg_from_line}=  Get Text  xpath://div[@data-testid='message']/div[1]/div[1]
-   ${msg_email_line}=  Get Text  xpath://div[@data-testid='message']/div[2]/div
-   ${msg_subject}=  Get Text  xpath://div[@data-testid='message']/div[3]/div
-   ${msg_message}=  Get Text  xpath://div[@data-testid='message']/div[4]/div
-   Should Be equal  ${message}  ${msg_message}
+   RETURN  ${name_el}
 
-   Close All Browsers
-#    #Get Names
-#    ${names}= Get WebElements    css:.row div[data-testid]:first-of-type
-#    FOR  ${name}  IN  @{names}:
-#        ${match}
+Extract Message Information From Message Overlay
+   ${from_line}=  Get Text  xpath://div[@data-testid='message']/div[1]/div[1]
+   ${email_line}=  Get Text  xpath://div[@data-testid='message']/div[2]/div
+   ${subject_line}=  Get Text  xpath://div[@data-testid='message']/div[3]/div
+   ${message_line}=  Get Text  xpath://div[@data-testid='message']/div[4]/div
+
+   RETURN  ${from_line}  ${email_line}  ${subject_line}  ${message_line}
