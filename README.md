@@ -21,7 +21,7 @@ what each challenge is and then click through to my solution for each.
 
 [The UI Challenge](https://www.ministryoftesting.com/challenges/16) asks of us ...
 
->how you would mitigate the following risk:
+>... how you would mitigate the following risk:
 >
 >An admin user is unable to see and read the message in the admin portal
 >
@@ -31,6 +31,14 @@ what each challenge is and then click through to my solution for each.
 [See our solution for the UI Challenge](ui-challenge/README.rst)
 
 ### Visual Automation Challenge - Can we check that the correct images are displayed on the home page?
+
+Switching focus from the functionlity of the UI to the visual presentation within the UI the [second challenge](https://www.ministryoftesting.com/challenges/18) asks of us ...
+
+>... how you would mitigate the following risk:
+>
+>The map isn’t showing the correct location on the homepage
+>
+>If you had to build automation to visually validate that the image is shown correctly, how would you do it?
 
 [See our solution for the Visual Challenge](visual-challenge/README.rst)
 
