@@ -1,5 +1,5 @@
 *** Settings ***
-Library  SeleniumLibrary
+Library  SeleniumLibrary  plugins=SeleniumTestability;True;30 Seconds;True
 Library  ReactLibrary
 Library  FakerLibrary
 
@@ -10,7 +10,7 @@ Verify Contact Form Message
    Open Browser  https://automationintesting.online/  Chrome
    Click Button  Let me hack!
    #Wait for react
-   Sleep  2secs
+   #Sleep  2secs
    ${random_city}=  City
    ${Goldilocks}=  Set Variable  Goldilocks of the ${random_city}
    Input Text  id:name  ${Goldilocks}
@@ -24,10 +24,10 @@ Verify Contact Form Message
    Input Password  id:password   password
    Click Element  id:doLogin
    #Wait for react
-   Sleep  2secs
+   #Sleep  2secs
    Click Link  \#/admin/messages
    #Wait for react
-   Sleep  1secs
+   #Sleep  1secs
    ${count}=  Get Element Count  css:div[data-testid]:first-of-type
    FOR  ${index}  IN RANGE  ${count}
       ${name_el}=  Get WebElement    xpath://*[@data-testid="message${index}"]
@@ -40,7 +40,7 @@ Verify Contact Form Message
    IF  not $foundName  Fail  Did not find matching name in messages
    Click Element  ${name_el}
    #Wait for react
-   Sleep  1sec
+   #Sleep  1sec
    ${msg_from_line}=  Get Text  xpath://div[@data-testid='message']/div[1]/div[1]
    ${msg_email_line}=  Get Text  xpath://div[@data-testid='message']/div[2]/div
    ${msg_subject}=  Get Text  xpath://div[@data-testid='message']/div[3]/div
