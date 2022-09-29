@@ -32,7 +32,7 @@ what each challenge is and then click through to my solution for each.
 
 ### Visual Automation Challenge - Can we check that the correct images are displayed on the home page?
 
-Switching focus from the functionlity of the UI to the visual presentation within the UI the [second challenge](https://www.ministryoftesting.com/challenges/18) asks of us ...
+Switching focus from the functionality of the UI to the visual presentation within the UI the [second challenge](https://www.ministryoftesting.com/challenges/18) asks of us ...
 
 >... how you would mitigate the following risk:
 >
@@ -44,9 +44,26 @@ Switching focus from the functionlity of the UI to the visual presentation withi
 
 ### API Automation Challenge - Can we check that rooms can be created?
 
+In addition to or instead of testing through the UI we could also test through the API. The [third challenge](https://www.ministryoftesting.com/challenges/17) asks us to do that,
+
+>... how you would mitigate the following risk:
+>
+>The Room API is unable to create rooms
+>
+>If you had to build automation to confirm the Room API is able to create a
+>room, how would you do it?
+
 [See our solution for the API Challenge](api-challenge/README.rst)
 
 ### Data Management Challenge - How do we add and mantain test data in our system?
+
+Finally the [fourth challenge](https://www.ministryoftesting.com/challenges/19) asks us how can we modified the data directly or ...
+
+>... how you would mitigate the following problem:
+>
+>Creating test data manually is taking too long and slowing the team down
+>
+>If you had to rapidly create test data in an environment, how would you do it? Would you use an existing tool or build your own?
 
 [Coming soon ... our solution for the Data Management Challenge](db-challenge/README.rst)
 
