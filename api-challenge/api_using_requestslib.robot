@@ -1,7 +1,7 @@
 *** Settings ***
 Library  RequestsLibrary
 Library  DebugLibrary
-Library    Collections
+Library  Collections
 
 *** Test Cases ***
 Validate A Room Reservation Through The API
@@ -26,4 +26,3 @@ Validate A Room Reservation Through The API
     ...  features=${room_features}  roomPrice=${143}
     ${room_headers}=  Create Dictionary  accept=*/*  Content-Type=application/json  Cookie=token=${token}
     ${post_room_resp}=  POST On Session  room  /  json=${reservation}  headers=${room_headers}
-    #Debug
