@@ -1,6 +1,6 @@
 *** Settings ***
 Library  SeleniumLibrary  plugins=SeleniumTestability;True;30 Seconds;True
-Library  EyesLibrary
+Library  EyesLibrary  runner=web  config=../applitools.yaml
 
 Test Setup  Navigate To Automation In Testing Website And Hack It
 

@@ -1,6 +1,6 @@
 *** Settings ***
 Library  SeleniumLibrary  plugins=SeleniumTestability;True;30 Seconds;True
-Library  EyesLibrary
+Library  EyesLibrary  config=../applitools.yaml
 Library  String
 Library  FakerLibrary
 
