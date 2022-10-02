@@ -16,8 +16,8 @@ Validate A Room Reservation Through The API
 
 *** Keywords ***
 Create API Requests Sessions
-    Create Session    auth    https://automationintesting.online/auth
-    Create Session    room    https://automationintesting.online/room
+    Create Session    auth    https://automationintesting.online/auth  verify=True
+    Create Session    room    https://automationintesting.online/room  verify=True
 
 Define Baby Bear's Room
     @{room_features}=  Create List  Small Bed  Nightstand with Reading Light  Toy Chest
